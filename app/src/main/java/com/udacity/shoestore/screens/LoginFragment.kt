@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentLoginBinding
+import com.udacity.shoestore.databinding.FragmentWelcomeBinding
 
 
 class LoginFragment : Fragment() {
@@ -19,9 +20,7 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        val binding: FragmentLoginBinding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_login, container, false
-        )
+        val binding = FragmentLoginBinding.inflate(inflater, container, false )
 
         // Create list of buttons views
         val views = arrayListOf<View>(binding.newLoginBtn, binding.existingAccountBtn)

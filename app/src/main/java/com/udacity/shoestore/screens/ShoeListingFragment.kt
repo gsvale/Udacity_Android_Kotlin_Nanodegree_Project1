@@ -24,9 +24,7 @@ class ShoeListingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        val binding: FragmentShoeListingBinding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_shoe_listing, container, false
-        )
+        val binding = FragmentShoeListingBinding.inflate(inflater, container, false )
 
         // Go to Shoe Detail screen with navigation
         binding.addNewShoeBtn.setOnClickListener {

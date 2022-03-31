@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.udacity.shoestore.databinding.ActivityMainBinding
@@ -17,7 +18,7 @@ import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
-//    lateinit var viewModel : MainViewModel
+    //    lateinit var viewModel : MainViewModel
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
     private var menu: Menu? = null
@@ -33,7 +34,9 @@ class MainActivity : AppCompatActivity() {
 //        viewModel =  ViewModelProvider(this).get(MainViewModel::class.java)
 
         // Set the navController
-        navController = this.findNavController(R.id.myNavHostFragment)
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.myNavHostFragment) as NavHostFragment
+        navController = navHostFragment.navController
 
         // Set appBarConfiguration
         appBarConfiguration = AppBarConfiguration(

@@ -20,9 +20,7 @@ class InstructionsFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         // Set dataBinding
-        val binding: FragmentInstructionsBinding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_instructions, container, false
-        )
+        val binding =  FragmentInstructionsBinding.inflate(inflater, container, false )
 
         // Go to Shoe List screen with navigation
         binding.continueBtn.setOnClickListener {

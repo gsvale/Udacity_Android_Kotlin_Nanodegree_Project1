@@ -1,5 +1,11 @@
 package com.udacity.shoestore
 
+import android.text.TextUtils
+import android.util.Log
+import androidx.databinding.BaseObservable
+import androidx.databinding.Bindable
+import androidx.databinding.InverseMethod
+import androidx.databinding.Observable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,6 +17,11 @@ class MainViewModel : ViewModel() {
     private val _shoeList = MutableLiveData<ArrayList<Shoe>>(arrayListOf())
     val shoeList: LiveData<ArrayList<Shoe>>
         get() = _shoeList
+
+    val nameValue = MutableLiveData<String>("")
+    val companyValue = MutableLiveData<String>("")
+    val sizeValue = MutableLiveData<String>("")
+    val descriptionValue = MutableLiveData<String>("")
 
     // LiveData of cancel action boolean
     private val _detailCancel = MutableLiveData<Boolean>()
@@ -38,15 +49,41 @@ class MainViewModel : ViewModel() {
     }
 
     // Refresh detail save value after click
-    fun refreshDetailSave() {
+    private fun refreshDetailSave() {
         _detailSave.value = false
     }
 
-    // Add new shoe to LiveData to update list
-    fun addShoe(shoe : Shoe){
-        _shoeList.value?.add(shoe)
+    // Verify if all data correctly inserted, create shoe object and call function to add it
+    fun canAddShoe(): Boolean {
+        val nameValue = nameValue.value
+        val companyValue = companyValue.value
+        val sizeValue = sizeValue.value
+        val descriptionValue = descriptionValue.value
+
+        if (!TextUtils.isEmpty(nameValue)
+            && !TextUtils.isEmpty(companyValue)
+            && !TextUtils.isEmpty(sizeValue)
+            && !TextUtils.isEmpty(descriptionValue)
+        ) {
+            val shoe =
+                Shoe(
+                    nameValue!!,
+                    sizeValue!!.toDouble(),
+                    companyValue!!,
+                    descriptionValue!!,
+                    arrayListOf<String>()
+                )
+            addShoe(shoe)
+            return true
+        }
+        return false
     }
 
+    // Add new shoe to LiveData to update list
+    private fun addShoe(shoe: Shoe) {
+        _shoeList.value?.add(shoe)
+        refreshDetailSave()
+    }
 
 
 }

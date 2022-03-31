@@ -20,9 +20,7 @@ class WelcomeFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         // Set dataBinding
-        val binding: FragmentWelcomeBinding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_welcome, container, false
-        )
+        val binding = FragmentWelcomeBinding.inflate(inflater, container, false )
 
         // Go to Instructions screen with navigation
         binding.continueBtn.setOnClickListener{

@@ -24,9 +24,7 @@ class ShoeDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        val binding: FragmentShoeDetailBinding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_shoe_detail, container, false
-        )
+        val binding = FragmentShoeDetailBinding.inflate(inflater, container, false )
 
         // Set ViewModel to binding
         binding.viewModel = viewModel
@@ -40,23 +38,12 @@ class ShoeDetailFragment : Fragment() {
             }
         })
 
+
         // Observe save variable, update it, create new shoe and update
         // shoe list livedata and then navigate to shoe list screen
         viewModel.detailSave.observe(viewLifecycleOwner, Observer { isSave ->
             if (isSave) {
-                val name = binding.nameEt.text.toString()
-                val company = binding.companyEt.text.toString()
-                val size = binding.sizeEt.text.toString()
-                val description = binding.descriptionEt.text.toString()
-                if (!TextUtils.isEmpty(name)
-                    && !TextUtils.isEmpty(company)
-                    && !TextUtils.isEmpty(size)
-                    && !TextUtils.isEmpty(description)
-                ) {
-                    val newShoe =
-                        Shoe(name, size.toDouble(), company, description, arrayListOf<String>())
-                    viewModel.addShoe(newShoe)
-                    viewModel.refreshDetailSave()
+                if(viewModel.canAddShoe()) {
                     findNavController().navigate(ShoeDetailFragmentDirections.actionShoeDetailFragmentToShoeListingFragment())
                 }
             }

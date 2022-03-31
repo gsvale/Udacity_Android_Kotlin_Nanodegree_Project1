@@ -39,6 +39,7 @@
                 style="@style/NormalTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@={viewModel.nameValue}"
                 android:hint="@string/insert_shoe_name_label"
                 android:inputType="textEmailAddress"
                 android:textAlignment="center" />
@@ -56,6 +57,7 @@
                 style="@style/NormalTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@={viewModel.companyValue}"
                 android:hint="@string/insert_company_label"
                 android:inputType="textEmailAddress"
                 android:textAlignment="center" />
@@ -73,6 +75,7 @@
                 style="@style/NormalTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@={viewModel.sizeValue}"
                 android:hint="@string/insert_shoe_size_label"
                 android:inputType="numberSigned"
                 android:textAlignment="center" />
@@ -90,6 +93,7 @@
                 style="@style/NormalTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@={viewModel.descriptionValue}"
                 android:hint="@string/insert_description_label"
                 android:inputType="textEmailAddress"
                 android:textAlignment="center" />
